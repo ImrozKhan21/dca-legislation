@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+
+// Override styles
+
+.p-autocomplete {
+  width: 80vw;
+}
+
+.p-card-body, .p-card-content{
+  padding: 0 !important;
+  margin: 0;
+}
+
