@@ -25,6 +25,19 @@ export class ApiCallsService {
       }))
   }
 
+  getDataStewards(): Observable<any> {
+    const url = 'https://datacollaboration.net/API/Collaborative%20Privacy/Get%20Data%20Stewards';
+    return this.http.get(url, {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
+      responseType: 'text'
+    }).pipe(
+      map(resp => {
+        const queryResult = new Cinchy.QueryResult(resp);
+        const {data, schema} = JSON.parse(queryResult._jsonResult);
+        return this.toObjectArray(data, schema);
+      }))
+  }
+
   toObjectArray(data: any, schema: any): Array<Object> {
     let result: any = [];
     data.forEach((row: any) => {

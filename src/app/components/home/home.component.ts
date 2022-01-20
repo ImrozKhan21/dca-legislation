@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiCallsService} from "../../services/api-calls.service";
-import {ILegislation} from "../../models/common.model";
+import {ILegislation, IOption} from "../../models/common.model";
+import {SearchBy} from "../../models/general-values.model";
 
 @Component({
   selector: 'app-home',
@@ -10,17 +11,40 @@ import {ILegislation} from "../../models/common.model";
 export class HomeComponent implements OnInit {
   legislationData: ILegislation[];
   filteredLegislationData: ILegislation[];
+  autoCompleteOptions: ILegislation[];
+  filteredAutoCompleteOptions: ILegislation[];
   paginatedLegislationData: ILegislation[];
   legislationVal: any;
   currentPage = 0;
   pageSize = 8;
   allKeys: (keyof ILegislation)[];
+  searchByOptions: IOption[] = SearchBy;
+  selectedSearchBy: IOption;
+  placeholderForSearch: string;
 
   constructor(private apiCallsService: ApiCallsService) {
   }
 
   ngOnInit(): void {
     this.getLegislationData();
+  }
+
+  searchByClicked(optionObj: any) {
+    this.selectedSearchBy = optionObj.option;
+    this.placeholderForSearch = this.selectedSearchBy.name;
+   // this.filteredLegislationData = this.legislationData.
+    const key = this.selectedSearchBy.code as keyof ILegislation;
+    const uniqueOptions = [...new Set(this.legislationData.map(item => {
+      return item[key];
+    }))];
+    this.autoCompleteOptions = uniqueOptions.filter(item => item).map(optionItem => {
+      const newDropdownList = {} as ILegislation;
+      newDropdownList[key] = optionItem;
+      return newDropdownList;
+    });
+    this.filteredAutoCompleteOptions = this.autoCompleteOptions;
+    this.reset();
+    console.log('OPITONS', this.autoCompleteOptions);
   }
 
   async getLegislationData() {
@@ -32,37 +56,48 @@ export class HomeComponent implements OnInit {
 
   setKeys() {
     this.allKeys = (Object.keys(this.legislationData[0]) as (keyof ILegislation)[]).filter(
-      keyItem => keyItem !== 'Summary' && keyItem !== 'Title'
+      keyItem => keyItem !== 'Summary' && keyItem !== 'Title' && keyItem !== 'Links'
     );
   }
 
-  filterLegislation(event: any) {
+  filterAutoCompleteOptions(event: any) {
     let query = event.query;
-    this.filteredLegislationData = this.legislationData.filter(legislation => {
-      return legislation['Title'].toLowerCase().indexOf(query.toLowerCase()) == 0;
+    this.filteredAutoCompleteOptions = this.autoCompleteOptions.filter(legislation => {
+      const key = this.selectedSearchBy.code as keyof ILegislation;
+      return legislation[key].toLowerCase().indexOf(query.toLowerCase()) == 0;
     });
   }
 
   reset() {
+    this.legislationVal = '';
     this.filteredLegislationData = [...this.legislationData];
     this.setPaginateData();
   }
 
-  setPaginateData(event?: any) {
-    console.log('event', event)
+  itemSelected(event: ILegislation){
+    const key = this.selectedSearchBy.code as keyof ILegislation;
+    const currentSearchByKeyVal = event[key];
+    this.filterLegislation(currentSearchByKeyVal);
+    this.setPaginateData();
+  }
+
+  filterLegislation(currentSearchByKeyVal: string) {
+    this.filteredLegislationData = this.legislationData.filter(legislation => {
+      const key = this.selectedSearchBy.code as keyof ILegislation;
+      return legislation[key]?.toLowerCase()?.indexOf(currentSearchByKeyVal.toLowerCase()) == 0;
+    });
+    console.log('D', this.filteredLegislationData);
+  }
+
+  setPaginateData() {
     const startPoint = this.currentPage * this.pageSize;
     const endPoint = startPoint + this.pageSize;
     this.paginatedLegislationData = [...this.filteredLegislationData].slice(startPoint, endPoint);
   }
 
   paginate(event: any) {
-    console.log('EVENT PAGE', event);
     this.currentPage = event.page;
     this.setPaginateData();
-    //event.first = Index of the first record
-    //event.rows = Number of rows to display in new page
-    //event.page = Index of the new page
-    //event.pageCount = Total number of pages
   }
 
 }

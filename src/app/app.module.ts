@@ -54,4 +54,6 @@ export function getBaseUrl() {
 })
 
 export class AppModule {
+  constructor() {
+  }
 }

@@ -10,8 +10,21 @@ export interface ILegislation {
   'Regulates Who': string;
   'Summary': string;
   'Enforce Orgs': string;
-  'Jurisdiction City': string;
-  'Jurisdiction Country': string;
-  'Jurisdiction Region': string;
-  'Jurisdiction Supra': string;
+  'City': string;
+  'Country': string;
+  'Region': string;
+  'Supra': string;
+  'Links': string;
+}
+
+export interface IOption {
+  name: string;
+  code: string;
+}
+
+
+export interface IAvatar {
+  name: string;
+  linkedinUrl: string;
+  image: string;
 }

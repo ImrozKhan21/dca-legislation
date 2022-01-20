@@ -1,5 +1,11 @@
-<section class="dca-header">
-  <div class="dca-header--container">
-    <img src="assets/LogoWhite.webp" alt="logo">
+<section class="dca-header relative">
+  <div class="dca-header--container flex flex-row justify-between items-center">
+    <img class="dca-logo" src="assets/LogoWhite.webp" alt="logo">
+    <img class="h-[250px] hidden md:block lg:block item-center-n-relative" src="assets/nodeLogo.png" alt="banner">
+
+
+    <div class="pr-5">
+      <app-avatars [avatars]="avatars"></app-avatars>
+    </div>
   </div>
 </section>

@@ -6,12 +6,17 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PaginatorModule} from 'primeng/paginator';
 import {CardModule} from 'primeng/card';
+import {SelectButtonModule} from 'primeng/selectbutton';
+import {AvatarModule} from 'primeng/avatar';
+import {AvatarGroupModule} from 'primeng/avatargroup';
+import {AvatarsComponent} from "./avatars/avatars.component";
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    AvatarsComponent
   ],
   imports: [
     CommonModule,
@@ -19,11 +24,15 @@ import {CardModule} from 'primeng/card';
     FormsModule,
     ReactiveFormsModule,
     PaginatorModule,
-    CardModule
+    CardModule,
+    SelectButtonModule,
+    AvatarModule,
+    AvatarGroupModule
   ],
   exports: [
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    AvatarsComponent
   ]
 })
 export class ComponentsModule {

@@ -9,15 +9,50 @@ body {
   margin: 0;
 }
 
+.item-center-n-relative {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
 
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 // Override styles
 
 .p-autocomplete {
-  width: 80vw;
+  width: 35vw;
+
+  @media (max-width: 697px) {
+    width: 80vw;
+    margin-top: 10px;
+  }
 }
 
 .p-card-body, .p-card-content{
   padding: 0 !important;
   margin: 0;
+}
+
+.p-card{
+  height: 100%;
 }
 
