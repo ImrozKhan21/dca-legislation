@@ -4,6 +4,12 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/* Default theme. ~960B */
+@import '~@vime/core/themes/default.css';
+
+/* Optional light theme (extends default). ~400B */
+@import '~@vime/core/themes/light.css';
+
 body {
   padding: 0;
   margin: 0;
@@ -36,6 +42,12 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+
+.text-sm-12 {
+  font-size: 0.83rem;
+}
+
 // Override styles
 
 .p-autocomplete {
@@ -47,12 +59,31 @@ body {
   }
 }
 
-.p-card-body, .p-card-content{
+.p-card-body, .p-card-content {
   padding: 0 !important;
   margin: 0;
 }
 
-.p-card{
+.p-card {
   height: 100%;
 }
 
+app-avatars {
+  .p-avatar.p-avatar-xl {
+    width: 6rem !important;
+    height: 6rem !important;
+    font-size: 2rem;
+  }
+}
+
+p-button {
+  .p-button {
+    background: rgb(132 204 22);
+    border: rgb(132 204 22);
+
+    &:enabled:hover {
+      background: rgb(163 230 53);
+      color: black;
+    }
+  }
+}

@@ -9,6 +9,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {ComponentsModule} from "./components/components.module";
 import {CdkScrollableModule, CdkVirtualScrollViewport} from '@angular/cdk/scrolling';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {VimeModule} from "@vime/angular";
 
 
 export function appLoadFactory(config: ConfigService) {
@@ -30,7 +31,8 @@ export function getBaseUrl() {
     CinchyModule.forRoot(),
     ComponentsModule,
     CdkScrollableModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    VimeModule,
   ],
   providers: [
     {

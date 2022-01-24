@@ -10,13 +10,16 @@ import {SelectButtonModule} from 'primeng/selectbutton';
 import {AvatarModule} from 'primeng/avatar';
 import {AvatarGroupModule} from 'primeng/avatargroup';
 import {AvatarsComponent} from "./avatars/avatars.component";
-
+import {VideoBannerComponent} from './video-banner/video-banner.component';
+import {VimeModule} from "@vime/angular";
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   declarations: [
     HomeComponent,
     HeaderComponent,
-    AvatarsComponent
+    AvatarsComponent,
+    VideoBannerComponent
   ],
   imports: [
     CommonModule,
@@ -27,12 +30,15 @@ import {AvatarsComponent} from "./avatars/avatars.component";
     CardModule,
     SelectButtonModule,
     AvatarModule,
-    AvatarGroupModule
+    AvatarGroupModule,
+    VimeModule,
+    ButtonModule
   ],
   exports: [
     HomeComponent,
     HeaderComponent,
-    AvatarsComponent
+    AvatarsComponent,
+    VideoBannerComponent
   ]
 })
 export class ComponentsModule {

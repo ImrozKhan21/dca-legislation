@@ -10,6 +10,7 @@ import {isPlatformBrowser} from "@angular/common";
 })
 export class AvatarsComponent implements OnInit {
   @Input() avatars: IAvatar[];
+  @Input() size: string = 'xlarge';
 
   constructor(@Inject(PLATFORM_ID) private platformId: any,
               private windowRef: WindowRefService) {
@@ -21,7 +22,6 @@ export class AvatarsComponent implements OnInit {
   avatarClicked(avatar: IAvatar) {
     if(isPlatformBrowser(this.platformId)) {
       const url = avatar.linkedinUrl;
-      console.log('URL', url, avatar)
       this.windowRef.nativeWindow.open(url, '_blank');
     }
   }

@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ApiCallsService} from "../../services/api-calls.service";
-import {ILegislation, IOption} from "../../models/common.model";
+import {IAvatar, ILegislation, IOption} from "../../models/common.model";
 import {SearchBy} from "../../models/general-values.model";
 
 @Component({
@@ -9,6 +9,7 @@ import {SearchBy} from "../../models/general-values.model";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  @Input() avatars: IAvatar[];
   legislationData: ILegislation[];
   filteredLegislationData: ILegislation[];
   autoCompleteOptions: ILegislation[];

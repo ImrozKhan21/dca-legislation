@@ -1,8 +1,10 @@
 .dca-header {
+  z-index: 99999;
+
   &--container {
     width: 100%;
     height: 70px;
-    background: #0b1158;
+  //  background: #0b1158;
 
     .dca-logo {
       margin-left: 10px;

@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Cinchy, CinchyService} from "@cinchy-co/angular-sdk";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { map } from 'rxjs';
+import {IAvatar} from "./models/common.model";
+import {ApiCallsService} from "./services/api-calls.service";
 
 @Component({
   selector: 'app-root',
@@ -10,10 +12,12 @@ import { map } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   title = 'dca-private';
+  avatars: IAvatar[];
 
-  constructor() {
+  constructor(private apiCallsService: ApiCallsService) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.avatars = await this.apiCallsService.getDataStewards().toPromise();
   }
 }

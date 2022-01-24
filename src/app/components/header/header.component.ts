@@ -1,6 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {IAvatar} from "../../models/common.model";
-import {ApiCallsService} from "../../services/api-calls.service";
 
 @Component({
   selector: 'app-header',
@@ -8,13 +7,12 @@ import {ApiCallsService} from "../../services/api-calls.service";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  avatars: IAvatar[];
+  @Input() avatars: IAvatar[];
 
-  constructor(private apiCallsService: ApiCallsService) {
+  constructor() {
   }
 
-  async ngOnInit() {
-    this.avatars = await this.apiCallsService.getDataStewards().toPromise();
+  ngOnInit() {
   }
 
 }
