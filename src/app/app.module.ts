@@ -25,7 +25,7 @@ export function getBaseUrl() {
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'node-zero' }),
     AppRoutingModule,
     HttpClientModule,
     CinchyModule.forRoot(),
